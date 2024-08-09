@@ -51,11 +51,6 @@ interface Nodes {
    * Preloader element for the image.
    */
   imagePreloader: HTMLElement;
-
-  /**
-   * Caption element for the image.
-   */
-  caption: HTMLElement;
 }
 
 /**
@@ -84,7 +79,6 @@ interface ConstructorParams {
  * Class for working with UI:
  *  - rendering base structure
  *  - show/hide preview
- *  - apply tune view
  */
 export default class Ui {
   /**
@@ -130,9 +124,6 @@ export default class Ui {
       fileButton: this.createFileButton(),
       imageEl: undefined,
       imagePreloader: make('div', this.CSS.imagePreloader),
-      caption: make('div', [this.CSS.input, this.CSS.caption], {
-        contentEditable: !this.readOnly,
-      }),
     };
 
     /**
@@ -141,24 +132,12 @@ export default class Ui {
      *    <image-container>
      *      <image-preloader />
      *    </image-container>
-     *    <caption />
      *    <select-file-button />
      *  </wrapper>
      */
-    this.nodes.caption.dataset.placeholder = this.config.captionPlaceholder;
     this.nodes.imageContainer.appendChild(this.nodes.imagePreloader);
     this.nodes.wrapper.appendChild(this.nodes.imageContainer);
-    this.nodes.wrapper.appendChild(this.nodes.caption);
     this.nodes.wrapper.appendChild(this.nodes.fileButton);
-  }
-
-  /**
-   * Apply visual representation of activated tune
-   * @param tuneName - one of available tunes {@link Tunes.tunes}
-   * @param status - true for enable, false for disable
-   */
-  public applyTune(tuneName: string, status: boolean): void {
-    this.nodes.wrapper.classList.toggle(`${this.CSS.wrapper}--${tuneName}`, status);
   }
 
   /**
@@ -255,16 +234,6 @@ export default class Ui {
   }
 
   /**
-   * Shows caption input
-   * @param text - caption content text
-   */
-  public fillCaption(text: string): void {
-    if (this.nodes.caption !== undefined) {
-      this.nodes.caption.innerHTML = text;
-    }
-  }
-
-  /**
    * CSS classes
    */
   private get CSS(): Record<string, string> {
@@ -281,7 +250,6 @@ export default class Ui {
       imageContainer: 'image-tool__image',
       imagePreloader: 'image-tool__image-preloader',
       imageEl: 'image-tool__image-picture',
-      caption: 'image-tool__caption',
     };
   };
 

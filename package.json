@@ -1,6 +1,6 @@
 {
-  "name": "@editorjs/image",
-  "version": "2.9.3",
+  "name": "@yurineko/editorjs-image",
+  "version": "1.0.2",
   "keywords": [
     "codex editor",
     "image",
@@ -9,7 +9,7 @@
   ],
   "description": "Image Tool for Editor.js",
   "license": "MIT",
-  "repository": "https://github.com/editor-js/image",
+  "repository": "https://github.com/Yurineko-Service/editorjs-image-without-caption",
   "files": [
     "dist"
   ],

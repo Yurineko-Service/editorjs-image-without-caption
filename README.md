@@ -27,23 +27,23 @@ This Tool is also capable of uploading & displaying video files using the `<vide
 Get the package
 
 ```shell
-yarn add @editorjs/image
+yarn add @yurineko/editorjs-image
 ```
 
 Include module at your application
 
 ```javascript
-import ImageTool from '@editorjs/image';
+import ImageTool from '@yurineko/editorjs-image';
 ```
 
-Optionally, you can load this tool from [JsDelivr CDN](https://cdn.jsdelivr.net/npm/@editorjs/image@latest)
+Optionally, you can load this tool from [JsDelivr CDN](https://cdn.jsdelivr.net/npm/@yurineko/editorjs-image@latest)
 
 ## Usage
 
 Add a new Tool to the `tools` property of the Editor.js initial config.
 
 ```javascript
-import ImageTool from '@editorjs/image';
+import ImageTool from '@yurineko/editorjs-image';
 
 // or if you inject ImageTool via standalone script
 const ImageTool = window.ImageTool;
@@ -79,39 +79,10 @@ Image Tool supports these configuration parameters:
 | types | `string` | (default: `image/*`) Mime-types of files that can be [accepted with file selection](https://github.com/codex-team/ajax#accept-string).|
 | additionalRequestData | `object` | Object with any data you want to send with uploading requests |
 | additionalRequestHeaders | `object` | Object with any custom headers which will be added to request. [See example](https://github.com/codex-team/ajax/blob/e5bc2a2391a18574c88b7ecd6508c29974c3e27f/README.md#headers-object) |
-| captionPlaceholder | `string` | (default: `Caption`) Placeholder for Caption input |
 | buttonContent | `string` | Allows to override HTML content of «Select file» button |
 | uploader | `{{uploadByFile: function, uploadByUrl: function}}` | Optional custom uploading methods. See details below. |
-| actions | `array` | Array with custom actions to show in the tool's settings menu. See details below. |
 
 Note that if you don't implement your custom uploader methods, the `endpoints` param is required.
-
-## Tool's settings
-
-![](https://capella.pics/c74cdeec-3405-48ac-a960-f784188cf9b4.jpg)
-
-1. Add border
-
-2. Stretch to full-width
-
-3. Add background
-
-Add extra setting-buttons by adding them to the `actions`-array in the configuration:
-```js
-actions: [
-    {
-        name: 'new_button',
-        icon: '<svg>...</svg>',
-        title: 'New Button',
-        toggle: true,
-        action: (name) => {
-            alert(`${name} button clicked`);
-        }
-    }
-]
-```
-
-**_NOTE:_**  return value of `action` callback for settings whether action button should be toggled or not is *deprecated*. Consider using `toggle` option instead.
 
 ## Output data
 
@@ -120,10 +91,6 @@ This Tool returns `data` with following format
 | Field          | Type      | Description                     |
 | -------------- | --------- | ------------------------------- |
 | file           | `object`  | Uploaded file data. Any data got from backend uploader. Always contain the `url` property |
-| caption        | `string`  | image's caption                 |
-| withBorder     | `boolean` | add border to image             |
-| withBackground | `boolean` | need to add background          |
-| stretched      | `boolean` | stretch image to screen's width |
 
 
 ```json
@@ -133,10 +100,6 @@ This Tool returns `data` with following format
         "file": {
             "url" : "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg"
         },
-        "caption" : "Roadster // tesla.com",
-        "withBorder" : false,
-        "withBackground" : false,
-        "stretched" : true
     }
 }
 ```
@@ -224,7 +187,7 @@ Both methods must return a Promise that resolves with response in a format that 
 Example:
 
 ```js
-import ImageTool from '@editorjs/image';
+import ImageTool from '@yurineko/editorjs-image';
 
 var editor = EditorJS({
   ...
